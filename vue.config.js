@@ -1,5 +1,6 @@
 const path = require('path');
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? '/x6-vue3-components-examples/' : '/',
     configureWebpack: {
         module:{
             rules:[{
