@@ -1,6 +1,6 @@
 <template>
-    <Dropdown v-if="slotDropdown" tAppendTo="parent">
-        <button type="button" v-bind="buttonProps" :onClick="handleClick">
+    <Dropdown v-bind="buttonProps" v-if="slotDropdown" tAppendTo="parent">
+        <button type="button" :class="`${baseCls}-button`" :onClick="handleClick">
             <span v-if="icon && !slotIcon" :class="`${baseCls}-icon ${icon}`"></span>
             <slot v-if="slotIcon" name="icon"></slot>
             <span v-if="text && !slotDefault" :class="`${baseCls}-text`">
@@ -18,8 +18,8 @@
             <slot name="dropdown" :onClick="handleDropdownItemClick"></slot>
         </template>
     </Dropdown>
-    <div v-else>
-        <button type="button" v-bind="buttonProps" :onClick="handleClick">
+    <div v-bind="buttonProps" v-else>
+        <button type="button" :class="`${baseCls}-button`" :onClick="handleClick">
             <span v-if="icon && !slotIcon" :class="`${baseCls}-icon ${icon}`"></span>
             <slot v-if="slotIcon" name="icon"></slot>
             <span v-if="text && !slotDefault" :class="`${baseCls}-text`">
@@ -36,7 +36,7 @@
     </div>
 </template>
 <script>
-import { toRefs, inject, ref, reactive, defineComponent } from 'vue'
+import { toRefs, inject, ref, defineComponent, computed } from 'vue'
 import Dropdown from '../x6-dropdown/Dropdown.vue'
 import Tooltip from '../x6-tooltip/Tooltip.vue'
 export default defineComponent({
@@ -113,20 +113,23 @@ export default defineComponent({
         let toolbarContextClick = toolbarContext.click
         let baseCls = toolbarContext.baseCls
         baseCls = `${baseCls}-item`
-        let { icon, text, hidden, active, disabled, className, tooltip, tooltipAsTitle, dropdownArrow } = toRefs(props)
-        let buttonProps = {
-            class: `${baseCls} 
-            ${hidden.value ? `${baseCls}-hidden` : ''} 
-            ${active.value ? `${baseCls}-active` : ''} 
-            ${disabled.value ? `${baseCls}-disabled` : ''} 
-            ${slotDropdown.value ? `${baseCls}-dropdown` : ''} 
-            ${className.value}
-            `
-        }
-        if (tooltip.value && tooltipAsTitle.value) {
-            buttonProps.title = tooltip.value
-        }
-        buttonProps = reactive(buttonProps)
+        let { hidden, active, disabled, className, tooltip, tooltipAsTitle } = toRefs(props)
+        
+        let buttonProps = computed(() => {
+            let buttonProps = {
+                class: `${baseCls} 
+                ${hidden.value ? `${baseCls}-hidden` : ''} 
+                ${active.value ? `${baseCls}-active` : ''} 
+                ${disabled.value ? `${baseCls}-disabled` : ''} 
+                ${slotDropdown.value ? `${baseCls}-dropdown` : ''} 
+                ${className.value}
+                `
+            }
+            if (tooltip.value && tooltipAsTitle.value) {
+                buttonProps.title = tooltip.value
+            }
+            return buttonProps
+        })
         return {
             slotDefault,
             slotIcon,
