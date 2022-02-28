@@ -6,8 +6,8 @@ let use = function(Graph) {
         inherit: "vue-shape",
         x: 200,
         y: 150,
-        width: 150,
-        height: 100,
+        width: 78,
+        height: 24,
         component: {
             template: `<Demo />`,
             components: {

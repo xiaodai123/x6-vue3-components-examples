@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+import 'element-plus/dist/index.css'
 import * as ElIcons from "@element-plus/icons"
 import './assets/font-icons/iconfont.css'
 import 'x6-vue3-components/lib/x6-vue3-components.min.css';

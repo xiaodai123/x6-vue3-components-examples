@@ -18,7 +18,7 @@
     "axios": "^0.24.0",
     "babel-plugin-import": "^1.13.3",
     "clamp": "^1.0.1",
-    "element-plus": "^1.0.2-beta.53",
+    "element-plus": "^2.0.2",
     "hotkeys-js": "^3.8.7",
     "overlayscrollbars": "^1.13.1",
     "sass-loader": "^10.1.1",

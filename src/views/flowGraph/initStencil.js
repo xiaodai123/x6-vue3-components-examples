@@ -301,8 +301,8 @@ let initStencil = function(graph, el) {
 
     const vueNode1 = graph.createNode({
         shape: 'vue-demo',
-        width: 104,
-        height: 43,
+        width: 78,
+        height: 24,
         ports: { ...nodePorts }
     })
     stencil.load([vueNode1], 'vueNode')
